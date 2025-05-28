@@ -1,0 +1,59 @@
+body {
+    font-family: sans-serif;
+    text-align: center;
+    margin-top: 20px;
+    background-color: #f0f0f0;
+  }
+  
+  #game {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    gap: 10px;
+    justify-content: center;
+  }
+  
+  .board {
+    display: grid;
+    grid-template-columns: repeat(3, 60px);
+    gap: 5px;
+    padding: 5px;
+    background-color: #ddd;
+    border: 2px solid #000;
+  }
+  
+  .cell {
+    width: 60px;
+    height: 60px;
+    background-color: white;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+  
+  .cell.won {
+    background-color: #9ee9aa;
+  }
+  
+  .board.won-x {
+    background-color: #b3d9ff;
+  }
+  
+  .board.won-o {
+    background-color: #ffb3b3;
+  }
+  
+  .board.active {
+    border: 3px solid red;
+  }
+  .cell.clicked {
+    animation: pop 0.2s;
+  }
+  
+  @keyframes pop {
+    0%   { transform: scale(1); }
+    50%  { transform: scale(1.2); }
+    100% { transform: scale(1); }
+  }
+  
