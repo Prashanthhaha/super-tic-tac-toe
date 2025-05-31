@@ -1,16 +1,14 @@
 import { checkMiniWinner } from './utils.js';
 
-const MAX_DEPTH = 4; // You can tweak this value later
+const MAX_DEPTH = 4; 
 
 function minimax(boardState, winners, currentPlayer, activeBoard, depth = 0, isMax = true) {
   const opponent = currentPlayer === "X" ? "O" : "X";
 
-  // Check super board winner
   const superWinner = checkMiniWinner(winners);
   if (superWinner === currentPlayer) return { score: 100 - depth };
   if (superWinner === opponent) return { score: depth - 100 };
-
-  // Check draw
+  
   if (winners.every(w => w)) return { score: 0 };
 
   if (depth >= MAX_DEPTH) return { score: 0 };
@@ -26,16 +24,16 @@ function minimax(boardState, winners, currentPlayer, activeBoard, depth = 0, isM
     for (let cellIndex = 0; cellIndex < 9; cellIndex++) {
       if (boardState[boardIndex][cellIndex] !== null) continue;
 
-      // Clone board state
+      
       const newBoard = boardState.map(b => [...b]);
       const newWinners = [...winners];
 
-      // Make move
+     
       newBoard[boardIndex][cellIndex] = currentPlayer;
       const winner = checkMiniWinner(newBoard[boardIndex]);
       if (winner) newWinners[boardIndex] = winner;
 
-      // Determine next active board
+      
       const nextBoard = (newWinners[cellIndex] || newBoard[cellIndex].every(c => c !== null))
         ? -1
         : cellIndex;
